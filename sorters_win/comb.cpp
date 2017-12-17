@@ -10,7 +10,7 @@ Comb::Comb(std::vector<Bignum> v)
 void Comb::execute()
 {
 	const Bignum size = elements.size();
-	int h = size / 2;
+	Bignum h = size / 2;
 	bool bChanged = false;
 	while (h>=1)
 	{
@@ -33,6 +33,6 @@ void Comb::execute()
 			continue;
 		}
 
-		h = h / 1.3f;
+		h = (Bignum)((float)h / 1.3f);
 	}
 }

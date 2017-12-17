@@ -8,7 +8,7 @@ public:
 
 	void execute() override;
 protected:
-	int partition(Bignum start, Bignum end);
+	Bignum partition(Bignum start, Bignum end);
 	void quicksort(Bignum start, Bignum end);
 };
 

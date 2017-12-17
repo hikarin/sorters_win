@@ -11,11 +11,11 @@ void Quick::execute()
 	quicksort(0, elements.size() - 1);
 }
 
-int Quick::partition(Bignum start, Bignum end)
+Bignum Quick::partition(Bignum start, Bignum end)
 {
 	Bignum pivot = elements[(start+end)/2];
-	int i = start - 1;
-	int j = end + 1;
+	Bignum i = start - 1;
+	Bignum j = end + 1;
 
 	while (true)
 	{
@@ -34,7 +34,7 @@ void Quick::quicksort(Bignum start, Bignum end)
 {
 	if (start < end)
 	{
-		int p = partition(start, end);
+		Bignum p = partition(start, end);
 		quicksort(start, p);
 		quicksort(p+1, end);
 	}

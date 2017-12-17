@@ -12,7 +12,7 @@ Sort::~Sort()
 
 void Sort::init(std::vector<Bignum>& v)
 {
-	std::srand((size_t)time(nullptr));
+	std::srand((unsigned int)time(nullptr));
 	for (auto p = v.begin(); p != v.end(); p++)
 	{
 		*p = std::rand() % v.size();
