@@ -23,12 +23,11 @@ void Bitonic::execute()
 
 	std::vector<std::thread> threads(threadNum);
 
-	for (Bignum block = 1; block <= new_size; block *= 2)
+	for (Bignum block = 1; block <= new_size; block <<= 1)
 	{
-		//for (Bignum step = block / 2; step >= 1; step /= 2)
-		for (Bignum step = block / 2; step >= 1; step /= 2)
+		for (Bignum step = (block >> 1); step >= 1; step >>= 1)
 		{
-			for (int i = 0; i < threadNum; i++)
+			for (int i = 0; i < threadNum; ++i)
 			{
 				Bignum start = range * i;
 				Bignum end = min(new_size, range * (i + 1) - 1);
@@ -36,7 +35,7 @@ void Bitonic::execute()
 					[this, start, end, block, step]() { Bitonic::bitonic_sub(elements, start, end, block, step); });
 			}
 
-			for (int i = 0; i < threadNum; i++)
+			for (int i = 0; i < threadNum; ++i)
 			{
 				threads[i].join();
 			}
@@ -52,7 +51,7 @@ void Bitonic::execute()
 
 void Bitonic::bitonic_sub(std::vector<Bignum> &vec, Bignum start, Bignum end, Bignum block, Bignum step)
 {
-	for (Bignum idx = start; idx <= end; idx++)
+	for (Bignum idx = start; idx <= end; ++idx)
 	{
 		Bignum e = idx ^ step;
 		if (e > idx)
