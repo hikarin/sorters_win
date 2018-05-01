@@ -12,7 +12,6 @@ public:
 	void execute() override;
 
 private:	
-	static void CALLBACK bitonic_sub(PTP_CALLBACK_INSTANCE Instance, PVOID Param, PTP_WORK Work);
+	static void bitonic_sub(std::vector<Bignum>& vec, Bignum start, Bignum end, Bignum block, Bignum step);
 	int threadNum;
 };
-
